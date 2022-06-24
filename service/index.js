@@ -95,7 +95,12 @@ module.exports = class ListAppService {
 
   async deleteItem(index) {
     try {
-
+      let params = this.generateParams();
+      params.UpdateExpression = `REMOVE #items[${index}]`;
+      params.ExpressionAttributeNames = {"#items": "items"};
+      
+      dynamoClient.update(params).promise();
+      
     } catch (error) {
       return error;
     }

@@ -84,7 +84,7 @@ describe("List Service Tests", () => {
     ])
   });
 
-  xit("should delete an item using list index", async () => {
+  it("should delete an item using list index", async () => {
     const item = {
       name: "an item description",
     };

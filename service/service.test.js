@@ -5,20 +5,14 @@ const dynamoClient = require("../db");
 const { dropTable, initialize } = require("../db/initialize");
 
 describe("List Service Tests", () => {
-  beforeAll(async () => {
+  afterAll(async () => {
     await dropTable(dynamoClient);
     await initialize(dynamoClient);
   });
 
   beforeEach(async () => {
-    dynamoClient.put({
-      TableName: process.env.TABLE_NAME,
-      Item: {
-        id: process.env.APP_ID,
-        items: [],
-        title: "List Title (click me to change!)",
-      }
-    })
+    await dropTable(dynamoClient);
+    await initialize(dynamoClient);
   });
 
   it("should runs tests", () => {

@@ -61,7 +61,7 @@ describe("List Service Tests", () => {
     ]);
   });
 
-  xit("should update an item's name using list index", async () => {
+  it("should update an item's name using list index", async () => {
     const item = {
       name: "an item description",
     };

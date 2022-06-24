@@ -76,7 +76,18 @@ module.exports = class ListAppService {
 
   async updateItem(index, name) {
     try {
+      const getParams = this.generateParams();
+      const listData = await dynamoClient.get(getParams).promise();
+      let itemsList = listData.Item.items;
+      itemsList[index].name = name;
+      const updateParams = this.generateParams();
+      updateParams.UpdateExpression = "set #i = :d";
+      updateParams.ExpressionAttributeNames = {"#i": "items"};
+      updateParams.ExpressionAttributeValues = {":d": itemsList};
+      updateParams.ReturnValues = "UPDATED_NEW";
 
+      let response = await dynamoClient.update(updateParams).promise();
+      return response;
     } catch (error) {
       return error;
     }

@@ -60,7 +60,15 @@ module.exports = class ListAppService {
 
   async addToList(item) {
     try {
-
+      let itemArray = [];
+      itemArray.push(item);
+      let params = this.generateParams();
+      params.UpdateExpression = "SET #i = list_append(#i, :o)";
+      params.ExpressionAttributeNames = {"#i": "items"};
+      params.ExpressionAttributeValues = {":o": itemArray};
+      const listData = await dynamoClient.update(params).promise();
+      const returnedItem = await dynamoClient.get(this.generateParams()).promise();
+      return returnedItem.Item.items;
     } catch (error) {
       return error;
     }

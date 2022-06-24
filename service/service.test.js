@@ -48,7 +48,7 @@ describe("List Service Tests", () => {
     expect(actual).toEqual("New Title");
   });
 
-  xit("should add an item to the list", async () => {
+  it("should add an item to the list", async () => {
     const item = {
       name: "an item description",
     };

@@ -5,19 +5,19 @@ const dynamoClient = require("../db");
 
 // The apps routes will uses these service methods to interact with our DynamoDB Table
 module.exports = class ListAppService {
-  // generateParams = () => {
-  //   return {
-  //     TableName,
-  //     Key: { id: appId },
-  //   };
-  // };
+  generateParams = () => {
+    return {
+      TableName,
+      Key: { id: appId },
+    };
+  };
   
   async getListData() {
     try {
-      // const listData = await dynamoClient
-      //   .get(this.generateParams())
-      //   .promise();
-      // return listData.Item;
+      const listData = await dynamoClient
+        .get(this.generateParams())
+        .promise();
+      return listData.Item;
     } catch (error) {
       return error;
     }

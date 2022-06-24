@@ -19,7 +19,7 @@ describe("List Service Tests", () => {
     expect(1).toEqual(1);
   });
 
-  xit("should get all list app data", async () => {
+  it("should get all list app data", async () => {
     const actual = await service.getListData();
 
     expect(actual).toEqual({

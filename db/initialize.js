@@ -2,7 +2,7 @@ const TableName = process.env.TABLE_NAME;
 const appId = parseInt(process.env.APP_ID);
 
 const params = {
-  TableName,
+  TableName: TableName,
   Key: {
     id: appId
   }

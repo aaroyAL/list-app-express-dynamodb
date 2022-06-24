@@ -98,6 +98,7 @@ module.exports = class ListAppService {
       let params = this.generateParams();
       params.UpdateExpression = `REMOVE #items[${index}]`;
       params.ExpressionAttributeNames = {"#items": "items"};
+      params.ReturnValues = "ALL_NEW";
       
       dynamoClient.update(params).promise();
       

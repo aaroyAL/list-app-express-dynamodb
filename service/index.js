@@ -36,7 +36,12 @@ module.exports = class ListAppService {
 
   async changeTitle(title) {
     try {
-
+      let params = this.generateParams();
+      params.UpdateExpression = "SET title = :t";
+      params.ExpressionAttributeValues = {":t": title};
+      params.ReturnValues = "UPDATED_NEW";
+      const listData = await dynamoClient.update(params).promise();
+      return listData.Attributes.title;
     } catch (error) {
       return error;
     }

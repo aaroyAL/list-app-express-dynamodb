@@ -42,7 +42,7 @@ describe("List Service Tests", () => {
     expect(actual).toEqual("List Title (click me to change!)");
   });
 
-  xit("should change the app title, returning the updated title", async () => {
+  it("should change the app title, returning the updated title", async () => {
     const actual = await service.changeTitle("New Title");
 
     expect(actual).toEqual("New Title");

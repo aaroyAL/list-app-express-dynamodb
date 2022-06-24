@@ -25,7 +25,10 @@ module.exports = class ListAppService {
 
   async getTitle() {
     try {
-
+      const listData = await dynamoClient
+        .get(this.generateParams())
+        .promise();
+      return listData.Item.title;
     } catch (error) {
       return error;
     }
@@ -41,7 +44,10 @@ module.exports = class ListAppService {
 
   async getList() {
     try {
-
+      const listData = await dynamoClient
+        .get(this.generateParams())
+        .promise();
+      return listData.Item.items;
     } catch (error) {
       return error;
     }

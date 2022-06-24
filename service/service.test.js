@@ -30,13 +30,13 @@ describe("List Service Tests", () => {
   });
 
   // remove the 'x' in front of 'it' to unskip tests
-  xit('should get the list items', async () => {
+  it('should get the list items', async () => {
     const actual = await service.getList();
 
     expect(actual).toEqual([]);
   });
 
-  xit("should get the app title", async () => {
+  it("should get the app title", async () => {
     const actual = await service.getTitle();
 
     expect(actual).toEqual("List Title (click me to change!)");
